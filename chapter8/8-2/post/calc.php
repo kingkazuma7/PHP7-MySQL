@@ -7,6 +7,13 @@
   <title></title>
 </head>
 <body>
-  
+  <?php
+    $tanka = $_POST["tanka"];
+    $kosu  = $_POST["kosu"]; 
+    $price = $tanka * $kosu;
+    $tanka = number_format($tanka);
+    $price = number_format($price);
+    echo "単価{$tanka}円 × {$kosu}個 は {$price}円です"
+  ?>
 </body>
 </html>
