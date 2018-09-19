@@ -6,6 +6,7 @@
   // クーポンコードで割引率を調べて返す
   function getCouponRate($code) {
     global $couponList;
+    $isCouponCode = array_key_exists($code, $couponList);
     if ($isCouponCode) {
       return $couponList[$code];
     } else {
@@ -15,6 +16,7 @@
 
   // 商品IDで価格を調べて返す
   function getPrice($id) {
+    global $priceList;
     $isGoodsID = array_key_exists($id, $priceList);
     if ($isGoodsID) {
       return $priceList[$id];

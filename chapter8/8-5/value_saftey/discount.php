@@ -18,27 +18,29 @@
     $_POST = es($_POST);
   ?>
 
-<!-- 隠しフィールドから値を受け取る -->
   <?php
-  $errors = [];
-  if (isset($_POST['discount'])) {
-    $discount = $_POST['discount'];
-    if (!is_numeric($discount)) {
-      $errors[] = "割引率の数値エラー";
+    $errors = [];
+    if (isset($_POST['couponCode'])) {
+      $couponCode = $_POST['couponCode'];
+    } else {
+      $couponCode = "";
     }
-  } else {
-    $errors[] = "割引率が未設定";
-  }
-  if (isset($_POST['tanka'])) {
-    $tanka = $_POST['tanka'];
-    if (!ctype_digit($tanka)) {
-      $errors[] = "単価の数値エラー";
+    if (isset($_POST['goodsID'])) {
+      $goodsID = $_POST['goodsID'];
+    } else {
+      $goodsID = "";
     }
-  } else {
-    $errors[] = "単価が未設定";
-  }
   ?>
-<!-- 隠しフィールドから値を受け取る -->
+
+  <?php
+    require_once("saledata.php");
+    $discount = getCouponRate($couponCode);
+    $tanka = getPrice($goodsID);
+    if (is_null($discount)||is_null($tanka)){
+      $err = '<div class="error">不正な操作がありました。</div>';
+      exit($err);
+    }
+  ?>
 
 <!-- 入力フィールドからの値を受け取る -->
   <?php
