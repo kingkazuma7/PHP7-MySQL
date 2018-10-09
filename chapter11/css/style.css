@@ -10,7 +10,7 @@ li {
 }
 
 ol > li {
-	list-style-type: decimal;
+	list-style-type: none;
 	margin-bottom: 0;
 }
 
