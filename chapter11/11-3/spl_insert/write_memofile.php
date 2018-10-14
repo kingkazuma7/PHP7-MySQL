@@ -28,12 +28,12 @@ if (file_exists($filename)) {
   // 元データを読み込む
   $fileObj->flock(LOCK_SH);
   $olddata = $fileObj->fread($fileObj->getSize());
-  $fileObj->flocck(LOCK_UN);
+  $fileObj->flock(LOCK_UN);
 
   // 古いデータを作業ファイルに追記する　
   $olddata = "\n" . $olddata;
   $workingfileObj->flock(LOCK_EX);
-  $workingfileObj->frite($olddata);
+  $workingfileObj->fwrite($olddata);
   $workingfileObj->flock(LOCK_UN);
 
   // 元ファイルを閉じる
